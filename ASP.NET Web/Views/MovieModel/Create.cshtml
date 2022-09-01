@@ -1,0 +1,36 @@
+﻿@model MovieModel;
+
+<form method="post">
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary"> Add Movie </h2>
+            <hr />
+        </div>
+        <@*div asp-validation-summary="All"></div>*@
+        <div class="mb-3">
+            <label asp-for="Name"> Name </label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span> 
+        </div>
+        <div class="mb-3">
+            <label asp-for="Director"> Director </label>
+            <input asp-for="Director" class="form-control" />
+            <span asp-validation-for="Director" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="ReleaseDate"> Release Date </label>
+            <input asp-for="ReleaseDate" class="form-control" />
+            <span asp-validation-for="ReleaseDate" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary " style="width:150px">Add</button>
+        <a asp-controller="MovieModel" asp-action="Index" class="btn btn-secondary" style="width:150px">
+            Back to List
+        </a>
+    </div>
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
