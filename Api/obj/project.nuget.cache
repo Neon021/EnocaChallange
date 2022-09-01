@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "l0Ln2H5awz6e5hN2+cQuTx2dyM0yen7asAbkJ0aQ6XbjzZuY3vjQV1rqK3nGG2M1LCTgFk05ZtkeCjsfQIU73w==",
+  "dgSpecHash": "QaCtmUMLIKyuH5T/pfEY6Z6y8JwMY5EEbHut525wW4J7J3k5y4CCSS/TIbysYjpmKUuUiGh3GUaGErZP6rYg8w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ASUS\\source\\repos\\ASP.NET Core Movie App\\Api\\Api.csproj",
+  "projectFilePath": "C:\\Users\\ASUS\\source\\repos\\MovieApp\\Api\\Api.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
