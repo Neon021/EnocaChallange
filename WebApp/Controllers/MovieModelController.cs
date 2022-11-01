@@ -13,13 +13,6 @@ namespace ASP.NET_Web.Controllers
             _db = db;
         }
 
-        public IActionResult Index()
-        {
-            IEnumerable<MovieModel>? ObjectCategoryList = _db.MovieModels;
-
-            return View(ObjectCategoryList);
-        }
-
         //GET 
         public IActionResult Create()
         {

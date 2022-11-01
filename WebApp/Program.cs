@@ -10,6 +10,11 @@ builder.Services.AddDbContext<ApplicationDBContext>(options => options.UseSqlSer
     ));
 
 builder.Services.AddRazorPages();
+builder.Services.AddMvc(options => options.EnableEndpointRouting = false);
+builder.Services.AddMvc().AddRazorPagesOptions(options =>
+{
+    options.Conventions.AddPageRoute("/Home/Index", "");
+});
 
 
 var app = builder.Build();
@@ -33,8 +38,11 @@ app.UseAuthentication();
 
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
+});
 
 app.Run();
