@@ -1,9 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ASP.NET_Web.Models
 {
-    public class MovieModel
+    public class Salon
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -11,8 +16,5 @@ namespace ASP.NET_Web.Models
 
         [Required, StringLength(int.MaxValue)]
         public string? Name { get; set; }
-
-        [Display(Name = "Release Date")]
-        public DateTime ReleaseDate { get; set; }
     }
 }
