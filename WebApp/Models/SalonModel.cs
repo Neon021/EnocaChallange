@@ -8,13 +8,15 @@ using System.Threading.Tasks;
 
 namespace ASP.NET_Web.Models
 {
-    public class Salon
+    public class SalonModel
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Required, StringLength(int.MaxValue)]
+        [Required]
         public string? Name { get; set; }
+
+        public ICollection<MovieModel>? Movies { get; set; }
     }
 }

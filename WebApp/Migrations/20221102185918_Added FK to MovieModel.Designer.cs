@@ -4,6 +4,7 @@ using ASP.NET_Web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ASP.NET_Web.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20221102185918_Added FK to MovieModel")]
+    partial class AddedFKtoMovieModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,28 +23,6 @@ namespace ASP.NET_Web.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("ASP.NET_Web.Models.MovieDetailsModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("MovieId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("ReleaseDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("SalonId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("MovieDetailsModels");
-                });
 
             modelBuilder.Entity("ASP.NET_Web.Models.MovieModel", b =>
                 {
@@ -63,7 +43,12 @@ namespace ASP.NET_Web.Migrations
                     b.Property<int>("SalonId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("SalonModelId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("SalonModelId");
 
                     b.ToTable("MovieModels");
                 });
@@ -78,6 +63,7 @@ namespace ASP.NET_Web.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasMaxLength(2147483647)
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -85,34 +71,16 @@ namespace ASP.NET_Web.Migrations
                     b.ToTable("SalonModels");
                 });
 
-            modelBuilder.Entity("MovieModelSalonModel", b =>
+            modelBuilder.Entity("ASP.NET_Web.Models.MovieModel", b =>
                 {
-                    b.Property<int>("MoviesId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SalonId")
-                        .HasColumnType("int");
-
-                    b.HasKey("MoviesId", "SalonId");
-
-                    b.HasIndex("SalonId");
-
-                    b.ToTable("MovieModelSalonModel");
+                    b.HasOne("ASP.NET_Web.Models.SalonModel", null)
+                        .WithMany("Movies")
+                        .HasForeignKey("SalonModelId");
                 });
 
-            modelBuilder.Entity("MovieModelSalonModel", b =>
+            modelBuilder.Entity("ASP.NET_Web.Models.SalonModel", b =>
                 {
-                    b.HasOne("ASP.NET_Web.Models.MovieModel", null)
-                        .WithMany()
-                        .HasForeignKey("MoviesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ASP.NET_Web.Models.SalonModel", null)
-                        .WithMany()
-                        .HasForeignKey("SalonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Movies");
                 });
 #pragma warning restore 612, 618
         }
