@@ -1,11 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ASP.NET_Web.Data;
 using ASP.NET_Web.Models;
-using Microsoft.EntityFrameworkCore;
-using System.Security.Cryptography.X509Certificates;
-using System.Collections.ObjectModel;
-using System.Linq;
-using NPOI.SS.Formula.Functions;
+using Newtonsoft.Json;
 
 namespace ASP.NET_Web.Controllers
 {
@@ -17,7 +13,10 @@ namespace ASP.NET_Web.Controllers
         {
             _db = db;
         }
-
+        public IActionResult Index()
+        {
+            return View();
+        }
         //GET 
         public IActionResult Create()
         {
@@ -42,7 +41,7 @@ namespace ASP.NET_Web.Controllers
                 }
                 catch (Exception ex)
                 {
-                    return BadRequest(ex.Message);
+                    return BadRequest(ex.InnerException);
                 }
 
             }
@@ -161,17 +160,25 @@ namespace ASP.NET_Web.Controllers
         [HttpPost]
         public IActionResult Filter_XSalonsandDate(int id)
         {
-            List<MovieDetailsModel> allMovieDetails = _db.MovieDetailsModels.ToList();
-            List<MovieDetailsModel> checkedMovieDetails = new(allMovieDetails.FindAll(idCheck));
-
-            Dictionary<int, DateTime> result = new Dictionary<int, DateTime>();
-
-            foreach (MovieDetailsModel m in checkedMovieDetails)
+            try
             {
-                result.Add(m.SalonId, m.ReleaseDate);
-            }
 
-            return View(result);
+                List<MovieDetailsModel> allMovieDetails = _db.MovieDetailsModels.ToList();
+                List<MovieDetailsModel> checkedMovieDetails = new(allMovieDetails.FindAll(idCheck));
+
+                Dictionary<int, DateTime> result = new Dictionary<int, DateTime>();
+
+                foreach (MovieDetailsModel m in checkedMovieDetails)
+                {
+                    result.Add(m.SalonId, m.ReleaseDate);
+                }
+
+                return View(result);
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
 
             bool idCheck(MovieDetailsModel obj)
             {

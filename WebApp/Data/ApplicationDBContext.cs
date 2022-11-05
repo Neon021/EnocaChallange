@@ -10,8 +10,8 @@ namespace ASP.NET_Web.Data
 
         }
 
-        public DbSet<MovieModel>? MovieModels { get; set; }  
-        public DbSet<SalonModel>? SalonModels { get; set; }
+        public DbSet<MovieModel> MovieModels { get; set; }  
+        public DbSet<SalonModel> SalonModels { get; set; }
         public DbSet<MovieDetailsModel> MovieDetailsModels { get; set; }
     }
 }

@@ -155,123 +155,52 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            @*@try
-                                            {
-                                                foreach (var obj in Model)
+                                            @{
+                                                if (Model != null)
+                                                {
+
+                                                    try
+                                                    {
+                                                        foreach (var obj in Model)
+                                                        {
+                                                        <tr>
+                                                            <td width="50%">
+                                                                    @obj.Name
+                                                            </td>
+                                                            <td width="30%">
+                                                                    @obj.ReleaseDate
+                                                            </td>
+                                                            <td>
+                                                                <div class="w-75 btn-group" role="group">
+                                                                    <a asp-controller="MovieModel" asp-action="Edit" asp-route-id="@obj.Id">
+                                                                        <i class="bi bi-pencil-square"></i> Edit
+                                                                    </a>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="w-75 btn-group" role="group">
+                                                                    <a asp-controller="MovieModel" asp-action="Delete" asp-route-id="@obj.Id">
+                                                                        <i class="bi bi-trash3"></i>  Delete
+                                                                    </a>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        }
+                                                    }
+                                                    catch (Exception ex)
+                                                    {
+                                                        //ErrorViewModel vm = new();
+                                                        //RedirectToActionResult redirect = new("Error", "Home", vm.ErrorMessage == ex.Message);
+                                                        //return RedirectToActionResult("Error", vm.ErrorMessage == ex.Message);
+                                                    }
+                                                }
+                                                else
                                                 {
                                                 <tr>
-                                                    <td width="50%">
-                                                            @obj.Name
-                                                    </td>
-                                                    <td width="30%">
-                                                            @obj.ReleaseDate
-                                                    </td>
-                                                    <td>
-                                                        <div class="w-75 btn-group" role="group">
-                                                            <a asp-controller="MovieModel" asp-action="Edit" asp-route-id="@obj.Id">
-                                                                <i class="bi bi-pencil-square"></i> Edit
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="w-75 btn-group" role="group">
-                                                            <a asp-controller="MovieModel" asp-action="Delete" asp-route-id="@obj.Id">
-                                                                <i class="bi bi-trash3"></i>  Delete
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                    </tr>
+                                                    <td colspan="2">No Movies Registered In The Database</td>
+                                                </tr>
                                                 }
                                             }
-                                            catch (Exception ex)
-                                            {
-                                                return IActionResult(ex.Message);
-                                            }*@
-                                        </tr>
-                                        @*TODO: EREASE THE DUMMY DATA *@
-                                        <tr>
-                                            <td>The Dark Knight</td>
-                                            <td>13.08.2003</td>
-                                            <td>
-                                                @*<a asp-controller="MovieModel" asp-action="Delete" asp-route-id="@obj.Id">*@
-                                                <i class="bi bi-trash3"></i>  Delete
-                                                @*</a>*@
-                                            </td>
-                                            <td>
-                                                @*<a asp-controller="MovieModel" asp-action="Edit" asp-route-id="@obj.Id">*@
-                                                <i class="bi bi-pencil-square"></i> Edit
-                                                @*</a>*@
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>The Dark Knight</td>
-                                            <td>13.08.2003</td>
-                                            <td>
-                                                @*<a asp-controller="MovieModel" asp-action="Delete" asp-route-id="@obj.Id">*@
-                                                <i class="bi bi-trash3"></i>  Delete
-                                                @*</a>*@
-                                            </td>
-                                            <td>
-                                                @*<a asp-controller="MovieModel" asp-action="Edit" asp-route-id="@obj.Id">*@
-                                                <i class="bi bi-pencil-square"></i> Edit
-                                                @*</a>*@
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>The Dark Knight</td>
-                                            <td>13.08.2003</td>
-                                            <td>
-                                                @*<a asp-controller="MovieModel" asp-action="Delete" asp-route-id="@obj.Id">*@
-                                                <i class="bi bi-trash3"></i>  Delete
-                                                @*</a>*@
-                                            </td>
-                                            <td>
-                                                @*<a asp-controller="MovieModel" asp-action="Edit" asp-route-id="@obj.Id">*@
-                                                <i class="bi bi-pencil-square"></i> Edit
-                                                @*</a>*@
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>The Dark Knight</td>
-                                            <td>13.08.2003</td>
-                                            <td>
-                                                @*<a asp-controller="MovieModel" asp-action="Delete" asp-route-id="@obj.Id">*@
-                                                <i class="bi bi-trash3"></i>  Delete
-                                                @*</a>*@
-                                            </td>
-                                            <td>
-                                                @*<a asp-controller="MovieModel" asp-action="Edit" asp-route-id="@obj.Id">*@
-                                                <i class="bi bi-pencil-square"></i> Edit
-                                                @*</a>*@
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>The Dark Knight</td>
-                                            <td>13.08.2003</td>
-                                            <td>
-                                                @*<a asp-controller="MovieModel" asp-action="Delete" asp-route-id="@obj.Id">*@
-                                                <i class="bi bi-trash3"></i>  Delete
-                                                @*</a>*@
-                                            </td>
-                                            <td>
-                                                @*<a asp-controller="MovieModel" asp-action="Edit" asp-route-id="@obj.Id">*@
-                                                <i class="bi bi-pencil-square"></i> Edit
-                                                @*</a>*@
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>The Dark Knight</td>
-                                            <td>13.08.2003</td>
-                                            <td>
-                                                @*<a asp-controller="MovieModel" asp-action="Delete" asp-route-id="@obj.Id">*@
-                                                <i class="bi bi-trash3"></i>  Delete
-                                                @*</a>*@
-                                            </td>
-                                            <td>
-                                                @*<a asp-controller="MovieModel" asp-action="Edit" asp-route-id="@obj.Id">*@
-                                                <i class="bi bi-pencil-square"></i> Edit
-                                                @*</a>*@
-                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
